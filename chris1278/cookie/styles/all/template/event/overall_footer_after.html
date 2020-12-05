@@ -1,0 +1,40 @@
+<script type="opt-in" data-type="application/javascript" data-name="youtube">
+	function showAllYoutubeContainer() {
+	  if( $( '.videoCConsentContainer' ).length > 0 ) {
+        $( '.videoCConsentContainer' ).each( function() {
+          _wrapper = $( this );
+          _wrapper.children(".ccMessageContainer").hide();
+          _wrapper.children(".videoLayer").show().html( '<iframe src="https://www.youtube-nocookie.com/embed/' + _wrapper.attr( 'data-source' ) + '?rel=0&controls=0&showinfo=0&autoplay=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+         });
+      }
+	}
+	function hideAllYoutubeContainer() {
+	  if( $( '.videoCConsentContainer' ).length > 0 ) {
+        $( '.videoCConsentContainer' ).each( function() {
+          _wrapper = $( this );
+          _wrapper.children(".ccMessageContainer").show();
+          _wrapper.children(".videoLayer").hide().html("");
+         });
+      }	  
+	}
+</script>
+<script type="opt-in" data-type="application/javascript" data-name="facebook">
+	function showAllFacebookContainer() {
+	  if( $( '.videoCConsentContainer' ).length > 0 ) {
+        $( '.videoCConsentContainer' ).each( function() {
+          _wrapper = $( this );
+          _wrapper.children(".ccMessageContainer").hide();
+          _wrapper.children(".videoLayer").show().html( '<iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Fitsdlai%2Fvideos%2F' + _wrapper.attr( 'data-source' ) + '%2F&show_text=false&width=476" width="476" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>');
+         });
+      }
+	}
+	function hideAllFacebookContainer() {
+	  if( $( '.videoCConsentContainer' ).length > 0 ) {
+        $( '.videoCConsentContainer' ).each( function() {
+          _wrapper = $( this );
+          _wrapper.children(".ccMessageContainer").show();
+          _wrapper.children(".videoLayer").hide().html("");
+         });
+      }	  
+	}
+</script>

@@ -1,0 +1,16 @@
+services:
+    chris1278.cookie.listener:
+        class: chris1278\cookie\event\listener
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@dbal.conn'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '@language'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            - '@?phpbb.collapsiblecategories.operator'
+        tags:
+            - { name: event.listener }
