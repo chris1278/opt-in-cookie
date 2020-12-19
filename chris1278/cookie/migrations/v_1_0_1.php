@@ -10,7 +10,7 @@
 
 namespace chris1278\cookie\migrations;
 
-class v_1_0_0 extends \phpbb\db\migration\migration
+class v_1_0_1 extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
@@ -19,13 +19,13 @@ class v_1_0_0 extends \phpbb\db\migration\migration
 
 	static public function depends_on()
 	{
-		return array('\chris1278\cookie\migrations\install_bbcodes');
+		return array('\chris1278\cookie\migrations\v_1_0_0');
 	}
 
 	public function update_data()
 	{
 		return array(
-			array('config.add', array ('cookie_manager_version', '1.0.0')),
+			array('config.add', array ('cookie_manager_version', '1.0.1')),
 		);
 	}
 

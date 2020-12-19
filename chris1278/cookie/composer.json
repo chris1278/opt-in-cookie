@@ -3,8 +3,8 @@
 	"type": "phpbb-extension",
 	"description": "Lädt Scripte womit Ihr den Benutzern der Forenseite die Möglichkeit gebt um Cookies abzulehnen oder zu akzeptieren!",
 	"homepage": "https://christian-esch.de",
-	"version": "1.0.0",
-	"time": "2020-12-03",
+	"version": "1.0.1",
+	"time": "2020-12-19",
 	"license": "GPL-2.0-only",
 	"authors": [{
 			"name": "Chris1278",

@@ -100,7 +100,7 @@ var klaroConfig = {
 		// bundled translations.
 		de: {
 			consentNotice: {
-				description: "Es müssen für folgende Optionen noch die Cookies ausgewählt werden: <br><br>{purposes}. <br><br>Die Einstellungen können später zu jedem Zeitpunkt geändert werden.<br><br>",
+				description: "Um bestimmte Funktionen nutzen zu können sind ein paar Einstellungen nötig. Damit wird gesteuert ob ein Dienst Cookies setzen darf oder nicht. <br><br>Es werden Cookies gesetzt für folgende Dienste:<br><br>{purposes}. <br><br>Die Einstellungen können später zu jedem Zeitpunkt geändert werden.<br><br>",
 				learnMore: "Zu den Cookie-Einstellungen",
 			},
 			acceptAll: "Alle akzeptieren",
@@ -152,7 +152,7 @@ var klaroConfig = {
 		},
 		en: {
 			consentNotice: {
-				description: "The cookies must still be selected for the following options: <br><br>{purposes}. <br><br>The settings can be changed later at any time.<br><br>",
+				description: "A few settings are required to be able to use certain functions. This controls whether a service is allowed to set cookies or not.<br><br>Cookies are set for the following services: <br><br>{purposes}. <br><br>The settings can be changed later at any time.<br><br>",
 				learnMore: "To the cookie settings",
 			},
 			acceptAll: "Accept all",

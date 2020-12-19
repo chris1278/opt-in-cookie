@@ -20,5 +20,6 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'COOKIE_INFO'				=> 'Sie müssen die Cookie-Consent-Einstellung für Externe Medien bei dem Schalter Youtube zulassen, damit Youtube-Videos in Beiträgen angezeigt und abgespielt werden können!',
+	'ADJUST_COOKIE'				=> 'Cookie-Consent-Einstellungen anpassen',
 	'OPT_IN_COKKIE_INFO'		=> 'Cookie-Einstellungen',
 ));

@@ -1,4 +1,6 @@
-.msgMedienContent {
-	padding: 5px;
-	background-color: gray;
+/* Cookie CSS
+---------------------------------------- */
+
+.btn.btn-primary {
+	cursor: pointer;
 }
