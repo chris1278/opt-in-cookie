@@ -73,18 +73,20 @@ class install_bbcodes extends \phpbb\db\migration\migration
 		*/
 		$bbcode_data = array(
 			'inline_bbcode=' => array(
-				'bbcode_match'		=> '[youtube]https://{IDENTIFIER2}.youtube.com/watch?v={IDENTIFIER}[/youtube]',
-				'bbcode_tpl'			=> '<div class="videoCConsentContainer" data-source="{IDENTIFIER}">
-											<div class="ccMessageContainer embed-responsive embed-responsive-16by9">
-											<div class="rules">
-											<p>Video: https://{IDENTIFIER2}.youtube.com/watch?v={IDENTIFIER}<br><br>{L_COOKIE_INFO}</p>
-											<a class="btn btn-primary" onclick="return klaro.show();">{L_ADJUST_COOKIE}</a>
+				'bbcode_match'			=> '[youtube]https://{IDENTIFIER2}.youtube.com/watch?v={IDENTIFIER}[/youtube]',
+				'bbcode_tpl'			=> '<div class="video-container">
+											<div class="videoCConsentContainer" data-source="{IDENTIFIER}">
+											 <div class="ccMessageContainer embed-responsive embed-responsive-16by9">
+											  <div class="msgMedienContent">
+											  <p>Link zum Video: <a href="https://{IDENTIFIER2}.youtube.com/watch?v={IDENTIFIER}">https://{IDENTIFIER2}.youtube.com/watch?v={IDENTIFIER}</a><br><br>{L_COOKIE_INFO}</p>
+											  <a class="btn btn-primary" onclick="return klaro.show();">{L_ADJUST_COOKIE}</a>
+											  </div>
+											 </div>
+											 <div class="videoLayer embed-responsive embed-responsive-16by9 vimvid"></div>
 											</div>
-											</div>
-											<div class="videoLayer embed-responsive embed-responsive-16by9 vimvid"></div>
 											</div>',
-				'bbcode_helpline'	=> '',
-				'display_on_posting'=> 1,
+				'bbcode_helpline'		=> '',
+				'display_on_posting'	=> 1,
 			),
 		);
 
