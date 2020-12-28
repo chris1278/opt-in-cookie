@@ -2,8 +2,7 @@
 /**
 *
 * Opt-In Cookie Manager by klaro Script extension for the phpBB Forum Software package.
-*
-* @copyright (c) 2019 (Christian-Esch.de)
+* @copyright (c) 2020 (Christian-Esch.de) and Kirk https://reyno41.bplaced.net/phpbb
 * @license GNU General Public License, version 2 (GPL-2.0-only)
 *
 */
@@ -36,6 +35,7 @@ class listener implements EventSubscriberInterface
 		$this->request		= $request;
 		$this->template		= $template;
 		$this->user			= $user;
+		$this->language		= $language;
 		$this->root_path	= $root_path;
 		$this->php_ext		= $php_ext;
 		$this->operator		= $operator;
@@ -44,6 +44,7 @@ class listener implements EventSubscriberInterface
 	{
 		return array(
 			'core.user_setup' => 'load_language_on_setup',
+			'core.page_header_after' => 'add_vaiable',
 		);
 	}
 
@@ -62,5 +63,14 @@ class listener implements EventSubscriberInterface
 	);
 
 	$event['lang_set_ext'] = $lang_set_ext;
+	}
+
+	public function add_vaiable()
+	{
+		$u_privacy_link			= append_sid("{$this->root_path}ucp.$this->php_ext", 'mode=privacy');
+		$u_terms_link			= append_sid("{$this->root_path}ucp.$this->php_ext", 'mode=terms');
+		$this->template->assign_vars(array(
+			'COOKIE'		=> sprintf($this->language->lang('D4'), $u_privacy_link, $u_terms_link),
+		));
 	}
 }

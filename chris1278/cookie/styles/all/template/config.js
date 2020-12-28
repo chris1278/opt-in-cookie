@@ -1,137 +1,145 @@
-// By default, Klaro will load the config from  a global "klaroConfig" variable.
-// You can change this by specifying the "data-config" attribute on your
-// script take, e.g. like this:
+// Standardmäßig lädt Klaro die Konfiguration aus einer globalen Variablen "klaroConfig".
+// Sie können dies ändern, indem Sie das Attribut "data-config" auf Ihrem Computer angeben
+// Skript nehmen, z.b. so was:
 // <script src="klaro.js" data-config="myConfigVariableName" />
 var klaroConfig = {
-	// With the 0.7.0 release we introduce a 'version' paramter that will make
-	// if easier for us to keep configuration files backwards-compatible in the future.
+	// Mit der Version 0.7.0 führen wir einen 'version'-Parameter ein,
+	// der es uns einfacher macht, Konfigurationsdateien in Zukunft abwärtskompatibel zu halten.
 	version: 1,
 
-	// You can customize the ID of the DIV element that Klaro will create
-	// when starting up. If undefined, Klaro will use 'klaro'.
+	// Wenn Sie dies auf true setzen, wird Klaro nicht automatisch geladen
+	// wenn die Seite geladen wird.
 	elementID: 'klaro',
 
-	// Setting this to true will keep Klaro from automatically loading itself
-	// when the page is being loaded.
-	noAutoLoad: false,
-
-	// Setting this to true will render the descriptions of the consent
-	// modal and consent notice are HTML. Use with care.
+	// Da diese Version für das phpbb Forum ausgelegt ist werden Sprachvariabeln über phpbb selber hier reingeladen
+	// Da dort in den Sprachvariablen auch html codes drin sind sollte dieser Wert dringends auf "true" stehen bleiben
+	// Empfohlener Wert "true"
 	htmlTexts: true,
 
-	// Setting 'embedded' to true will render the Klaro modal and notice without
-	// the modal background, allowing you to e.g. embed them into a specific element
-	// of your website, such as your privacy notice.
+	// Wenn dieser Wert auf "true" gesetzt wird lädt das Cookie Hinweisfenster in der Linken Ecke leicht Versteckt.
+	// Es schaut dann nur ein oberer Teil des Fensters heraus und man mus den Browser herunterscrollen damit man
+	// die Buttons freilegen kann um eine Auswahl zu treffen, Es wird empfohlen: "false"
 	embedded: false,
 
-	// You can group services by their purpose in the modal. This is advisable
-	// if you have a large number of services. Users can then enable or disable
-	// entire groups of services instead of having to enable or disable every service.
+	// Sie können Dienste nach ihrem Zweck in einzelne Gruppen zusammenfassen. Dies ist ratsam
+	// falls Sie eine große Anzahl von Diensten haben. Benutzer können diese dann aktivieren oder deaktivieren
+	// in dem Sie einfach eine ganze Gruppe aktivieren bzw. deaktivieren,, anstatt jeden Dienst einzeln
+	// aktivieren oder deaktivieren zu müssen. Es wird empfohlen: "true"
 	groupByPurpose: true,
 
-	// How Klaro should store the user's preferences. It can be either 'cookie'
-	// (the default) or 'localStorage'.
+	// Wie Klaro die Einstellungen des Benutzers speichern soll. Es kann entweder "Cookie" sein
+	// (Standardeinstellung) oder 'localStorage'.
 	storageMethod: 'cookie',
 
-	// You can customize the name of the cookie that Klaro uses for storing
-	// user consent decisions. If undefined, Klaro will use 'klaro'.
+	// Sie können den Namen des Cookies anpassen, das Klaro zum Speichern verwendet
+	// Benutzerzustimmungsentscheidungen. Wenn nicht definiert, verwendet Klaro 'klaro'.
 	cookieName: 'klaro',
 
-	// You can also set a custom expiration time for the Klaro cookie.
-	// By default, it will expire after 120 days.
+	// Sie können auch eine benutzerdefinierte Ablaufzeit für das Klaro-Cookie festlegen.
+	// Standardmäßig läuft es nach 120 Tagen ab.
 	cookieExpiresAfterDays: 365,
 
-	// You can change to cookie domain for the consent manager itself.
-	// Use this if you want to get consent once for multiple matching domains.
-	// If undefined, Klaro will use the current domain.
+	// Sie können für den Einwilligungsmanager selbst zur Cookie-Domain wechseln.
+	// Verwenden Sie diese Option, wenn Sie einmal die Zustimmung für mehrere übereinstimmende Domänen erhalten möchten.
+	// Wenn nicht definiert, verwendet Klaro die aktuelle Domain.
 	//cookieDomain: '.localhost',
 
-	// Defines the default state for services (true=enabled by default).
+	// Definiert den Standardstatus für Dienste (true = standardmäßig aktiviert).
+	// Empfohlen wird "false"
 	default: false,
 
-	// If "mustConsent" is set to true, Klaro will directly display the consent
-	// manager modal and not allow the user to close it before having actively
-	// consented or declines the use of third-party services.
+	// Wenn auf "true" gesetzt wird das Cookie-Hinweisfenster übergangen und direkt auf der Mitte des Bildschirms
+	// der Cookie Einwilligungsmanager angezeigt. Der Bescuher mus dann erst seine gewünschten Einstellungen
+	// tätigen und dies Bestätige. Erst dann kann der Besucher die Webseite wieder benutzen da solange der
+	// Cookie Einwilligungsmanager aktiv ist sonst der Hintergrund abgedunkelt und gesperrt wird.
+	// Es wird empfohlen: "false"
 	mustConsent: false,
 
-	// Show "accept all" to accept all services instead of "ok" that only accepts
-	// required and "default: true" services
+	// Bei dem Wert "false" wird der Button "Alle Akzeptieren" im Cookie Einwilligungsmanager nicht angezeigt.
+	// Das heist das man dort nur den Button "Ausgewählte akzeptieren" angezeigt bekommt.
+	// Es wird empfohlen: "true"
 	acceptAll: true,
 
-	// replace "decline" with cookie manager modal
+	// Bei der Auswahl "true" wird der Button "Ablehnen" im Cookie Hinweisfenster und im Cookie Einwilligungsmanager
+	// nicht angezeigt. Diese Option sollte nur verwendet werden wenn die Option hideLearnMore: auf false gesetzt wird.
+	// Da man ansonsten aus dem Cookie Hinweisfenster nicht zum Cookie Einwilligungsmanager gelangt um dort eine
+	// Auswahl zu treffen. Es wird Empfohlen: false
 	hideDeclineAll: false,
 
-	// hide "learnMore" link
+	// Der Wert "true" blendet den Schriftzug aus mit dem Man von dem Cookie Hinweisfenster aus den Cookie Einwilligungsmanager
+	// aufrufen kann. Es wird davon abgeraten hier den wert auf "true" zu setzen wenn der Wert bei hideDeclineAll auf "true" steht
+	// Da man sonst bein erstaufruf nur das Cookie Hinweisfenster aufgerufen bekommmt und man dem Benutzer dazu zwingt zu Akzeptieren.
+	// Es wird empfohlen: "false"
 	hideLearnMore: false,
 
-	// show cookie notice as modal
+	// Wenn auf "true" gesetzt öffnet sich das Hinweisfenster mit der Meldung für Cookies anstelle in der unteren Eck mittig
+	// auf dem Bildschirm und verdunkelt den Rest des Bildes ein Wenig. Um die Webseite wieder Nutzen zu können
+	// mus der Benutzer erst eine Auswahl tätigen und diese Bestätigen. Bei dem wert "false" kann er die Webseite Benutzen
+	// auch wenn er keine Auswahl trifft. Daher wird empfohlen: "false"
 	noticeAsModal: false,
 
-	// You can also remove the 'Realized with Klaro!' text in the consent modal.
-	// Please don't do this! We provide Klaro as a free open source tool.
-	// Placing a link to our website helps us spread the word about it,
-	// which ultimately enables us to make Klaro! better for everyone.
-	// So please be fair and keep the link enabled. Thanks :)
-	//disablePoweredBy: true,
+	// Du kannst auch das 'Realized with Klaro!' Text in dem Cookie-Einwilligungsmanager ausblenden.
+	// Bitte tu das nicht! Wir bieten Klaro als kostenloses Open Source Tool an.
+	// Das Platzieren eines Links zu unserer Website hilft uns, das Wort darüber zu verbreiten.
+	// was es uns letztendlich ermöglicht, Klaro zu machen! besser für alle.
+	// Also sei bitte fair und lass den Link aktiviert. Vielen Dank :)
+	// Es wird empfohlen: "false"
+	disablePoweredBy: false,
 
-	// you can specify an additional class (or classes) that will be added to the Klaro `div`
-	//additionalClass: 'my-klaro',
+	// Sie können eine zusätzliche Klasse (oder Klassen) angeben, die dem Klaro `div` hinzugefügt wird
+	// zusätzliche Klasse: 'my-klaro',
 
-	// You can define the UI language directly here. If undefined, Klaro will
-	// use the value given in the global "lang" variable. If that does
-	// not exist, it will use the value given in the "lang" attribute of your
-	// HTML tag. If that also doesn't exist, it will use 'en'.
-	//lang: 'en',
+	// Hier können Sie die UI-Sprache direkt definieren. Wenn nicht definiert, wird Klaro
+	// benutze den in der globalen Variablen "lang" angegebenen Wert. Wenn das so ist
+	// nicht vorhanden, es wird der Wert verwendet, der im Attribut "lang" von angegeben ist
+	// HTML-Tag. Wenn das auch nicht existiert, wird 'en' verwendet.
+	lang: 'pp',
 
-	// You can overwrite existing translations and add translations for your
-	// service descriptions and purposes. See `src/translations/` for a full
-	// list of translations that can be overwritten:
+	// Sie können vorhandene Übersetzungen überschreiben und Übersetzungen für Ihre hinzufügen
+	// Servicebeschreibungen und -zwecke. Siehe `src / translations /` für eine vollständige
+	// Liste der Übersetzungen, die überschrieben werden können:
 	// https://github.com/KIProtect/klaro/tree/master/src/translations
 
-	// Example config that shows how to overwrite translations:
-	// https://github.com/KIProtect/klaro/blob/master/src/configs/i18n.js
+	// Beispielkonfiguration, die zeigt, wie Übersetzungen überschrieben werden:
+	// https: // github.com/KIProtect/klaro/blob/master/src/configs/i18n.js
 	translations: {
-		// translationsed defined under the 'zz' language code act as default
-		// translations.
-		zz: {
-		  //  privacyPolicyUrl: '',
-		},
+
 		// If you erase the "consentModal" translations, Klaro will use the
 		// bundled translations.
-		de: {
+		pp: {
 			consentNotice: {
-				description: "Um bestimmte Funktionen nutzen zu können sind ein paar Einstellungen nötig. Damit wird gesteuert ob ein Dienst Cookies setzen darf oder nicht. <br><br>Es werden Cookies gesetzt für folgende Dienste:<br><br>{purposes}. <br><br>Die Einstellungen können später zu jedem Zeitpunkt geändert werden.<br><br>",
-				learnMore: "Zu den Cookie-Einstellungen",
+				description: d1,
+				learnMore: zc,
 			},
-			acceptAll: "Alle akzeptieren",
-			acceptSelected: "Ausgewählte akzeptieren",
-			decline: "Ablehnen",
-			ok: "Akzeptieren",
-			poweredBy: "Realisiert mit Klaro!",
+			save: a5,
+			acceptAll: a1,
+			acceptSelected: a3,
+			decline: a4,
+			ok: a2,
+			poweredBy: pb,
 			service: {
 				disableAll: {
-					description: "Mit diesem Schalter können Sie alle Dienste aktivieren oder deaktivieren.",
-					title: "Alle Dienste aktivieren oder deaktivieren"
+					description: d2,
+					title: t1
 				},
 				optOut: {
-					description: "Diese Dienste werden standardmäßig geladen (Sie können sich jedoch abmelden)",
+					description: o1,
 					title: "(Opt-out)"
 				},
-				purpose: "Zweck",
-				purposes: "Zwecke",
+				purpose: p1,
+				purposes: p2,
 				required: {
-					description: "Dieser Service ist immer erforderlich",
-					title: "(immer erforderlich)"
+					description: d3,
+					title: t2
 				}
 			},
 			purposeItem: {
-				service: "Dienst",
-				services: "Dienste"
+				service: s1,
+				services: s2
 			},
 			consentModal: {
-				title: 'Einstellungen für unsere Cookie´s',
-				description:
-					'Hier können die Einstellungen für Cookies vorgenommen werden die evtl. gesetzt werden. Es sind viele Einstellungen da, das heist aber nicht das auch alle Dienste verwendet werden. Es handelt sich bei diesem Script um ein Vordefiniertes universelles Script zum Auswählen von Cookies.<br><br> Allgemeine Hinweise und Informationen entnehmen Sie bitte unserer <strong>Datenschutzerklärung</strong> bzw. <strong>Nutzungsbedingungen</strong> die wir im Fussbereich der Seite verlinkt haben.',
+				title: t3,
+				description: d4,
 			},
 			inlineTracker: {
 				description: 'Beispiel für ein Inline-Tracking Skript',
@@ -141,64 +149,12 @@ var klaroConfig = {
 			},
 			purposes: {
 				essential: {
-					description: "Diese Cookies sind voreingestellte Werte und müssen akzeptiert werden, da diese für den Betrieb der Webseite erforderlich sind. \n",
-					title: "Technisch notwendige Cookies"
+					description: d5,
+					title: t4
 				},
 				extern: {
-					description: "Hier können Cookies eingestellt werden die durch externe Medien wie z.B. Youtube, Facebook etc. erstellt werden",
-					title: "Externe Medien"
-				},
-			},
-		},
-		en: {
-			consentNotice: {
-				description: "A few settings are required to be able to use certain functions. This controls whether a service is allowed to set cookies or not.<br><br>Cookies are set for the following services: <br><br>{purposes}. <br><br>The settings can be changed later at any time.<br><br>",
-				learnMore: "To the cookie settings",
-			},
-			acceptAll: "Accept all",
-			acceptSelected: "Accept selected",
-			decline: "Decline",
-			ok: "Accept",
-			poweredBy: "Realized with Klaro!",
-			service: {
-				disableAll: {
-					description: "Use this switch to enable or disable all services.",
-					title: "Enable or disable all services"
-				},
-				optOut: {
-					description: "This services is loaded by default (but you can opt out)",
-					title: "(opt-out)"
-				},
-				purpose: "purpose",
-				purposes: "purposes",
-				required: {
-					description: "This services is always required",
-					title: "(always required)"
-				}
-			},
-			purposeItem: {
-				service: "service",
-				services: "services"
-			},
-			consentModal: {
-				title: 'Settings for our Cookie´s',
-				description:
-					'The settings for cookies can be made here, which may be set. There are many settings, but that does not mean that all services are used. This script is a predefined universal script for selecting cookies. <br> <br> For general notes and information, please refer to our <strong> Privacy Policy </strong> or <strong> Terms of Use </strong> which we have linked in the footer of the page.',
-			},
-			inlineTracker: {
-				description: 'Example of an inline tracking script',
-			},
-			externalTracker: {
-				description: 'Example of an external tracking script',
-			},
-			purposes: {
-			essential: {
-					description: "These cookies are preset values and must be accepted as they are required for the website to operate. \n",
-					title: "Technically necessary cookies"
-				},
-			extern: {
-					description: "Cookies can be set here that are sent through external media such as Youtube, Facebook etc. can be created",
-					title: "External media"
+					description: d6,
+					title: t5
 				},
 			},
 		},
@@ -221,17 +177,17 @@ var klaroConfig = {
 			title: 'Youtube',
 			purposes: ['extern'],
 			callback : function(consent, app){
-			  if (typeof hideAllYoutubeContainer === "function") {
-				if (!consent) {
-				  hideAllYoutubeContainer();
-				} else {
-				  showAllYoutubeContainer();
+				if (typeof hideAllYoutubeContainer === "function") {
+					if (!consent) {
+						hideAllYoutubeContainer();
+					} else {
+						showAllYoutubeContainer();
+					}
 				}
-			}
 			},
 			required: false,
 			optOut: false,
 			onlyOnce: true,
-	},
+		},
 	],
 };

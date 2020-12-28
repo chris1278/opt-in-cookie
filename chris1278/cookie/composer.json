@@ -3,14 +3,26 @@
 	"type": "phpbb-extension",
 	"description": "Lädt Scripte womit Ihr den Benutzern der Forenseite die Möglichkeit gebt um Cookies abzulehnen oder zu akzeptieren!",
 	"homepage": "https://christian-esch.de",
-	"version": "1.0.1",
-	"time": "2020-12-19",
+	"version": "1.0.2",
+	"time": "2020-12-28",
 	"license": "GPL-2.0-only",
 	"authors": [{
 			"name": "Chris1278",
 			"email": "smilie-man@gmx.de",
 			"homepage": "https://christian-esch.de",
 			"role": "Lead Developer"
+		},
+		{
+			"name": "Kirk",
+			"email": "canam800er@googlemail.com",
+			"homepage": "https://reyno41.bplaced.net/phpbb",
+			"role": "Developer"
+		},
+			{
+			"name": "69bruno",
+			"email": "stephan-kaufmann@arcor.de",
+			"homepage": "https://cruiser-lounge.de/",
+			"role": "Contributor"
 		}
 		],
 	"require": {
@@ -20,6 +32,12 @@
 		"display-name": "Opt-In Cookie Manager by klaro Script",
 		"soft-require": {
 			"phpbb/phpbb": ">=3.3.0,<3.4.0@dev"
+		},
+		"version-check": {
+			"host": "raw.githubusercontent.com",
+			"directory": "/chris1278/opt-in-cookie/main",
+			"filename": "optin.json",
+			"ssl": true
 		}		
 	}
 }
