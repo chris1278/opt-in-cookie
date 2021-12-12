@@ -2,37 +2,34 @@
 /**
 *
 * Opt-In Cookie Manager by klaro Script extension for the phpBB Forum Software package.
-*
-* @copyright (c) 2019 (Christian-Esch.de)
+* @copyright (c) 2020 (Christian-Esch.de) and Kirk https://reyno41.bplaced.net/phpbb
 * @license GNU General Public License, version 2 (GPL-2.0-only)
 *
 */
+
+
 
 namespace chris1278\cookie\migrations;
 
 class v_1_0_1 extends \phpbb\db\migration\migration
 {
-	public function effectively_installed()
-	{
-		return;
-	}
 
-	static public function depends_on()
+	public static function depends_on()
 	{
-		return array('\chris1278\cookie\migrations\v_1_0_0');
+		return ['\chris1278\cookie\migrations\v_1_0_0'];
 	}
 
 	public function update_data()
 	{
-		return array(
-			array('config.add', array ('cookie_manager_version', '1.0.1')),
-		);
+		return [
+			['config.add', ['cookie_manager_version', '1.0.1']],
+		];
 	}
 
 	public function revert_schema()
 	{
-		return array(
-			array('config.remove', array('cookie_manager_version', '')),
-		);
+		return [
+			['config.remove', ['cookie_manager_version', '']],
+		];
 	}
 }

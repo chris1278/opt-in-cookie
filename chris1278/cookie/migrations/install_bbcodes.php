@@ -11,23 +11,23 @@ namespace chris1278\cookie\migrations;
 
 class install_bbcodes extends \phpbb\db\migration\migration
 {
-	static public function depends_on()
+	public static function depends_on()
 	{
-		return array('\phpbb\db\migration\data\v320\v320');
+		return ['\phpbb\db\migration\data\v320\v320'];
 	}
 
 	public function update_data()
 	{
-		return array(
-			array('custom', array(array($this, 'install_cookiebbcode'))),
-		);
+		return [
+			['custom', [[$this, 'install_cookiebbcode']]],
+		];
 	}
 
 	public function revert_data()
 	{
-		return array(
-			array('custom', array(array(&$this, 'cookiebbcode_behind'))),
-		);
+		return [
+			['custom', [[&$this, 'cookiebbcode_behind']]],
+		];
 	}
 
 	/**
@@ -42,7 +42,7 @@ class install_bbcodes extends \phpbb\db\migration\migration
 		/**
 		 * @var array An array of cookiebbcode (tags) to be left behind
 		 */
-		$bbcode_tags = array('youtubecode');
+		$bbcode_tags =['youtubecode'];
 
 		// set to null the display on posting
 		$sql = 'UPDATE ' . BBCODES_TABLE . '
@@ -71,27 +71,27 @@ class install_bbcodes extends \phpbb\db\migration\migration
 		/**
 		* @var array An array of bbcodes data to install
 		*/
-		$bbcode_data = array(
-			'youtube_bbcode=' => array(
+		$bbcode_data = [
+			'youtube_bbcode=' => [
 				'bbcode_match'			=> '[youtube]https://{IDENTIFIER2}.youtube.com/watch?v={IDENTIFIER}[/youtube]',
-				'bbcode_tpl'			=> '<div class="videoCConsentContainer" data-source="{IDENTIFIER}"><div class="ccMessageContainer embed-responsive embed-responsive-16by9"><div class="rules"><p class="videolink">{L_VIDEOLINK}{L_COLON} <a href="https://{IDENTIFIER2}.youtube.com/watch?v={IDENTIFIER}">https://{IDENTIFIER2}.youtube.com/watch?v={IDENTIFIER}</a></p><p>{L_COOKIE_INFO}</p><a class="btn btn-primary" onclick="return klaro.show();">{L_ADJUST_COOKIE}</a></div></div><div class="videoLayer embed-responsive embed-responsive-16by9 vimvid"></div></div>',
+				'bbcode_tpl'			=> '<div class="videoLayer"><div class="videoLayer-inner"><iframe data-src="https://{IDENTIFIER2}.youtube-nocookie.com/embed/{IDENTIFIER} "data-name="youtube"?rel=0&showinfo=0&autoplay=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>',
 				'bbcode_helpline'		=> 'YT_VIDEOLINK_HELP',
 				'display_on_posting'	=> 1,
-			),
-		);
+			],
+		];
 
 		foreach ($bbcode_data as $bbcode_name => $bbcode_array)
 		{
 			// Build the BBCodes
 			$data = $bbcode_tool->build_regexp($bbcode_array['bbcode_match'], $bbcode_array['bbcode_tpl']);
 
-			$bbcode_array += array(
+			$bbcode_array += [
 				'bbcode_tag'			=> $data['bbcode_tag'],
 				'first_pass_match'		=> $data['first_pass_match'],
 				'first_pass_replace'	=> $data['first_pass_replace'],
 				'second_pass_match'		=> $data['second_pass_match'],
 				'second_pass_replace'	=> $data['second_pass_replace']
-			);
+			];
 
 			$sql = 'SELECT bbcode_id
 					FROM ' . BBCODES_TABLE . "

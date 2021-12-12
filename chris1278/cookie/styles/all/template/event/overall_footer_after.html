@@ -1,20 +1,18 @@
-<script data-name="youtube">
-	function showAllYoutubeContainer() {
-	  if( $( '.videoCConsentContainer' ).length > 0 ) {
-        $( '.videoCConsentContainer' ).each( function() {
-          _wrapper = $( this );
-          _wrapper.children(".ccMessageContainer").hide();
-          _wrapper.children(".videoLayer").show().html( '<iframe src="https://www.youtube-nocookie.com/embed/' + _wrapper.attr( 'data-source' ) + '?rel=0&showinfo=0&autoplay=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-         });
-      }
+<script data-name="googletranslateext">
+	function showAllgoogleTranslateElementInit() {
+		if( $( '#translate' ).length > 0 ) {
+			$( '#translate' ).each( function() {
+				_wrapper = $( this );
+				_wrapper.children("#google_translate_element").show().html();
+			});
+		}
 	}
-	function hideAllYoutubeContainer() {
-	  if( $( '.videoCConsentContainer' ).length > 0 ) {
-        $( '.videoCConsentContainer' ).each( function() {
-          _wrapper = $( this );
-          _wrapper.children(".ccMessageContainer").show();
-          _wrapper.children(".videoLayer").hide().html("");
-         });
-      }	  
+	function hideAllgoogleTranslateElementInit() {
+		if( $( '#translate' ).length > 0 ) {
+			$( '#translate' ).each( function() {
+				_wrapper = $( this );
+				_wrapper.children("#google_translate_element").hide().html();
+			});
+		}
 	}
 </script>

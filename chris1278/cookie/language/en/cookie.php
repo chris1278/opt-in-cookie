@@ -2,12 +2,14 @@
 /**
 *
 * Opt-In Cookie Manager by klaro Script extension for the phpBB Forum Software package.
-*
-* @copyright (c) 2019 (Christian-Esch.de)
+* @copyright (c) 2020 (Christian-Esch.de) and Kirk https://reyno41.bplaced.net/phpbb
 * @license GNU General Public License, version 2 (GPL-2.0-only)
 *
 */
 
+/**
+* DO NOT CHANGE
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -15,36 +17,47 @@ if (!defined('IN_PHPBB'))
 
 if (empty($lang) || !is_array($lang))
 {
-	$lang = array();
+	$lang = [];
 }
 
-$lang = array_merge($lang, array(
-	'A1'						=> 'All accept',
-	'A2'						=> 'Accept',
-	'A3'						=> 'Accept selected ',
-	'A4'						=> 'Decline',
-	'A5'						=> 'Save',
-	'PB'						=> 'Realized with Klaro!',
-	'D1'						=> 'A few settings are required to be able to use certain functions. This controls whether a service is allowed to set cookies or not. <br><br>Cookies are set for the following services:<br><br>{purposes}. <br><br>The settings can be changed later at any time.<br><br>',
-	'ZC'						=> 'To the cookie settings',
-	'D2'						=> 'With this switch you can activate or deactivate all services.',
-	'T1'						=> 'Activate or deactivate all services',
-	'O1'						=> 'These services are loaded by default (but you can disable them)',
-	'P1'						=> 'purpose',
-	'P2'						=> 'purposes',
-	'D3'						=> 'This service is always required',
-	'T2'						=> '(always required)',
-	'S1'						=> 'service',
-	'S2'						=> 'services',
-	'T3'						=> 'Settings for our cookies',
-	'D4'						=> 'The settings for cookies can be made here, which may be set. There are many settings, but that does not mean that all services are used. This script is a predefined universal script for selecting cookies.<br><br> For general notes and information, please refer to our <a href="%1$s"><strong>Privacy Policy</strong></a> or <a href="%2$s"><strong>Terms of Use</strong></a>, which we have linked in the footer of the page.',
-	'D5'						=> 'These cookies are preset values and must be accepted as they are required for the website to operate.',
-	'T4'						=> 'Technically necessary cookies',
-	'D6'						=> 'Cookies can be set here that are sent through external media such as Youtube, Facebook etc. can be created',
-	'T5'						=> 'External media',
-	'VIDEOLINK'					=> 'Video link',
-	'YT_VIDEOLINK_HELP'			=> '[youtube]Video link[/youtube]',
-	'COOKIE_INFO'				=> 'You must allow the cookie consent setting for external media on the Youtube switch so that Youtube videos can be displayed and played in posts!',
-	'ADJUST_COOKIE'				=> 'Adjust the Cookie-Consent-Settings',
-	'OPT_IN_COKKIE_INFO'		=> 'Adjust the Cookie-Settings',
-));
+$lang = array_merge($lang, [
+	'CHRIS1278_CORE_CHRIS_CONFIG_PHP_ERROR'	=>	'dies ist ein test für sprachvariabel in der core/config_php', //eingebaut zum testen der core datei chris1278_config
+
+	//Error Warning for ext.php
+	'PHPBB_VERSION_WRONG'		=>	'Für das Benutzen dieser Extension must du mindestens die nachfolgend angezeigte PHPBB_Version haben:',
+	//Translation the content of the box
+	'TRUE'						=>	'true',
+	'FALSE'						=>	'false',
+	'ALL_ACCEPT'				=>	'Accept All',
+	'ACCEPT'					=>	'Accept',
+	'ACCEPT_SELECTED'			=>	'Accept selected',
+	'DECLINE'					=>	'Decline',
+	'SAVE'						=>	'Save',
+	'CLOSE'						=>	'Close',
+	'POWERD_BY'					=>	'Realized with Klaro!',
+	'FIRST_INFOS'				=>	'A few settings are required to be able to use certain functions. This controls whether a service is allowed to set cookies or not.<br><br>Cookies are set for the following services:<br><br>{purposes}. <br><br>The settings can be changed later at any time.<br><br>',
+	'THE_COOKIE_SETTTINGS'		=>	'To the Cookie-Settings',
+	'ALL_SWITCH_EXPLAIN'		=>	'With this switch you can activate or deactivate all services.',
+	'ALL_SWITCH'				=>	'Activate or deactivate all services',
+	'OPTOUT_INFO'				=>	'These services are loaded by default (but you can disable them)',
+	'KLARO_PURPOSE'				=>	'Purpose',
+	'KLARO_PURPOSES'			=>	'Purposes',
+	'ALWAYS_REQUIRED_SERVICE'	=>	'This service is always required!',
+	'ALWAYS_REQUIRED'			=>	'(always required)',
+	'KLARO_SERVICE'				=>	'Service',
+	'KLARO_SERVICES'			=>	'Services',
+	'SETTINGS_FOR_COOKIE'		=>	'<i class="opt-in-cookie-icon cookie-box-icon"></i> Settings for the Cookie´s',
+	'SECOND_INFOS'				=>	'The settings for cookies can be made here, which may be set.<br><br> For general notes and information, please refer to our <a href="%1$s"><strong>Data protection</strong></a> respectively <a href="%2$s"><strong> Terms of Use</strong></a>.',
+	'COOKIES_MUST_HAVE'			=>	'These cookies are preset values and must be accepted as they are necessary for the website to operate.',
+	'TECHNICAL_COOKIES'			=>	'Technically necessary cookies',
+	'EXTERN_COOKIES_EXPLAIN'	=>	'Cookies can be set here that are created by external media such as YouTube, Facebook, etc.',
+	'NEW_CHANGES'				=>	'There have been changes since your last visit, please renew your consent.',
+	'EXTERN_COOKIES'			=>	'External Media',
+	'LOAD_EXTERNAL_CONTENT'		=>	'Would you like to load external content provided by {title}?',
+	'ALLOW_ONCE'				=>	'Allow once',
+	'PERMIT_PERMANENTLY'		=>	'Permit permanently (you can change the settings at any time!)',
+	'TOOLS'						=>	'Tools',
+	'TOOLS_COOKIES'				=>	'Services such as Google Translator or Google Search are available here',
+	'YT_VIDEOLINK_HELP'			=>	'[youtube]Videolink[/youtube]',
+	'OPT_IN_COKKIE_INFO'		=>	'Cookie-Settings',
+]);

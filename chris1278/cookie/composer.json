@@ -1,9 +1,9 @@
 {
 	"name": "chris1278/cookie",
 	"type": "phpbb-extension",
-	"description": "Lädt Scripte womit Ihr den Benutzern der Forenseite die Möglichkeit gebt um Cookies abzulehnen oder zu akzeptieren!",
+	"description": "Loads scripts with which you give the users of the forum page the opportunity to reject or accept cookies!",
 	"homepage": "https://christian-esch.de",
-	"version": "1.0.2",
+	"version": "1.0.4",
 	"time": "2020-12-28",
 	"license": "GPL-2.0-only",
 	"authors": [{
@@ -24,14 +24,17 @@
 			"homepage": "https://cruiser-lounge.de/",
 			"role": "Contributor"
 		}
-		],
+	],
 	"require": {
-		"php": ">=7.3"
+		"php": ">=7.0.0,<9.0.0",
+		"phpbb/phpbb": ">=3.2.10,<3.4.0@dev",
+		"composer/installers": "~1.0.0"
 	},
 	"extra": {
-		"display-name": "Opt-In Cookie Manager by klaro Script",
+		"display-name": "Cookie Manager",
+		"lang-min-ver": "1.0.4",
 		"soft-require": {
-			"phpbb/phpbb": ">=3.3.0,<3.4.0@dev"
+			"phpbb/phpbb": ">=3.2.10,<3.4.0@dev"
 		},
 		"version-check": {
 			"host": "raw.githubusercontent.com",

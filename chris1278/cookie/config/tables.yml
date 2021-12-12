@@ -1,0 +1,2 @@
+parameters:
+    tables.ext_cookie: '%core.table_prefix%chris1278_cookie'

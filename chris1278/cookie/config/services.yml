@@ -1,16 +1,22 @@
+imports:
+    - { resource: tables.yml }
+
 services:
+    chris1278.cookie.ext_cookie:
+        class: chris1278\cookie\core\chris1278_db
+        arguments:
+            - '@dbal.conn'
+            - '@cache.driver'
+            - '%tables.ext_cookie%'
+
     chris1278.cookie.listener:
         class: chris1278\cookie\event\listener
         arguments:
-            - '@auth'
+            - '@chris1278.cookie.ext_cookie'
             - '@config'
-            - '@dbal.conn'
-            - '@request'
             - '@template'
-            - '@user'
             - '@language'
             - '%core.root_path%'
             - '%core.php_ext%'
-            - '@?phpbb.collapsiblecategories.operator'
         tags:
             - { name: event.listener }

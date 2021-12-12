@@ -1,0 +1,14 @@
+{% if WINDOW_POSITION %}<script>let windowposition = {{ lang('FALSE') }};</script>{% else %}<script>let windowposition = {{ lang('TRUE') }};</script>{% endif %}
+<script>let nameofcookie = {{ NAME_OF_COOKIE|json_encode|raw }};</script>
+<script>let klarodivcontainer = {{ KLARO_DIV_CONTAINER|json_encode|raw }};</script>
+{% if KLARO_HIDDEN_WINDOWS %}<script>let klarohiddenwindows = {{ lang('FALSE') }};</script>{% else %}<script>let klarohiddenwindows = {{ lang('TRUE') }};</script>{% endif %}
+{% if HTML_CODE_PROCESSING %}<script>let htmlcodeprocessing = {{ lang('TRUE') }};</script>{% else %}<script>let htmlcodeprocessing = {{ lang('FALSE') }};</script>{% endif %}
+{% if GROUP_FORMATION %}<script>let groupformation = {{ lang('TRUE') }};</script>{% else %}<script>let groupformation = {{ lang('FALSE') }};</script>{% endif %}
+{% if SAVE_ALL_BUTTON %}<script>let saveallbutton = {{ lang('TRUE') }};</script>{% else %}<script>let saveallbutton = {{ lang('FALSE') }};</script>{% endif %}
+<script>let cookieruntime = {{ COOKIE_RUNTIME|json_encode|raw }};</script>
+<script>let cookiedomain = {{ COOKIE_DOMAIN|json_encode|raw }};</script>
+{% if SHOW_DECLINE_BUTTON %}<script>let showdeclinebutton = {{ lang('FALSE') }};</script>{% else %}<script>let showdeclinebutton = {{ lang('TRUE') }};</script>{% endif %}
+{% if TO_THE_COOKIE_SETTINGS %}<script>let tothecookiesettings = {{ lang('FALSE') }};</script>{% else %}<script>let tothecookiesettings = {{ lang('TRUE') }};</script>{% endif %}
+{% if WINDOW_FIX_IN_THE_MIDDLE %}<script>let windowfixinthemiddle = {{ lang('TRUE') }};</script>{% else %}<script>let windowfixinthemiddle = {{ lang('FALSE') }};</script>{% endif %}
+{% if KLARO_NOTE %}<script>let klaronote = {{ lang('FALSE') }};</script>{% else %}<script>let klaronote = {{ lang('TRUE') }};</script>{% endif %}
+<script>let storageversion = {{ STORAGE_VERSION|json_encode|raw }};</script>
