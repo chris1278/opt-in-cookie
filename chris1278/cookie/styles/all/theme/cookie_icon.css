@@ -11,7 +11,7 @@
 	url("../theme/thirdparty/fa-solid-900.svg#fontawesome") format("svg");
 }
 
-.opt-in-cookie-icon:before {
+.opt-in-cookie-icon::before {
 	content: "\f564";
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;

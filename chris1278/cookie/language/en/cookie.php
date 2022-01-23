@@ -21,11 +21,6 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, [
-	'CHRIS1278_CORE_CHRIS_CONFIG_PHP_ERROR'	=>	'dies ist ein test für sprachvariabel in der core/config_php', //eingebaut zum testen der core datei chris1278_config
-
-	//Error Warning for ext.php
-	'PHPBB_VERSION_WRONG'		=>	'Für das Benutzen dieser Extension must du mindestens die nachfolgend angezeigte PHPBB_Version haben:',
-	//Translation the content of the box
 	'TRUE'						=>	'true',
 	'FALSE'						=>	'false',
 	'ALL_ACCEPT'				=>	'Accept All',
@@ -60,4 +55,9 @@ $lang = array_merge($lang, [
 	'TOOLS_COOKIES'				=>	'Services such as Google Translator or Google Search are available here',
 	'YT_VIDEOLINK_HELP'			=>	'[youtube]Videolink[/youtube]',
 	'OPT_IN_COKKIE_INFO'		=>	'Cookie-Settings',
+	'CS_TECH_COOKIE'			=>	'Login, Session Cookies',
+	'CS_YOUTUBE'				=>	'Youtube',
+	'CS_GOOGLE_TRANSLATOR'		=>	'Google Translator',
+	'CS_GOOGLE_ANALYTICS'		=>	'Google Analytics',
+	'CS_KLAROSTYLE'				=>	'light',
 ]);

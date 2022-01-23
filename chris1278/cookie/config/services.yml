@@ -1,18 +1,21 @@
-imports:
-    - { resource: tables.yml }
-
 services:
-    chris1278.cookie.ext_cookie:
-        class: chris1278\cookie\core\chris1278_db
+    chris1278.cookie.admin.controller:
+        class: chris1278\cookie\controller\admin_controller
         arguments:
-            - '@dbal.conn'
-            - '@cache.driver'
-            - '%tables.ext_cookie%'
+            - '@ext.manager' 
+            - '@path_helper'
+            - '@config'
+            - '@language'
+            - '@log'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '%core.root_path%'
+            - '%core.php_ext%'            
 
     chris1278.cookie.listener:
-        class: chris1278\cookie\event\listener
+        class: chris1278\cookie\event\main_listener
         arguments:
-            - '@chris1278.cookie.ext_cookie'
             - '@config'
             - '@template'
             - '@language'
