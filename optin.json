@@ -1,7 +1,7 @@
 {
 	"stable": {
-		"1.0": {
-			"current": "1.0.4",
+		"2.0": {
+			"current": "2.0.0",
 			"download": "https://github.com/Chris1278/opt-in-cookie",
 			"announcement": "https://www.phpbb.de/community/viewtopic.php?f=149&t=245064",
 			"eol": null,
