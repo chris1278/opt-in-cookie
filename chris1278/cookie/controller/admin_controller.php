@@ -57,9 +57,7 @@ class admin_controller
 		$ext_display_ver 			= $this->md_manager->get_metadata('version');
 		$lang_ver 					= ($this->language->lang('CM_LANG_EXT_VER') !== 'CM_LANG_EXT_VER') ? $this->language->lang('CM_LANG_EXT_VER') : '0.0.0';
 		$notes 						= '';
-
 		$this->language->add_lang('acp_cookie_general', 'chris1278/cookie');
-		$this->page_title = $this->language->lang('ACP_COOKIE_GENERAL');
 		add_form_key('cookie_general');
 		$errors = [];
 
@@ -78,6 +76,7 @@ class admin_controller
 				$this->config->set('klaro_hidden_windows', $this->request->variable('klaro_hidden_windows', 0));
 				$this->config->set('html_code_processing', $this->request->variable('html_code_processing', 0));
 				$this->config->set('group_formation', $this->request->variable('group_formation', 0));
+				$this->config->set('cookie_icon_selection', $this->request->variable('cookie_icon_selection', 0));
 				$this->config->set('save_all_button', $this->request->variable('save_all_button', 0));
 				$this->config->set('cookie_runtime', $this->request->variable('cookie_runtime', ''));
 				$this->config->set('show_decline_button', $this->request->variable('show_decline_button', 0));
@@ -110,6 +109,7 @@ class admin_controller
 			'KLARO_HIDDEN_WINDOWS'		=>	$this->config['klaro_hidden_windows'],
 			'HTML_CODE_PROCESSING'		=>	$this->config['html_code_processing'],
 			'GROUP_FORMATION'			=>	$this->config['group_formation'],
+			'COOKIE_ICON_SELECTION'		=>	$this->config['cookie_icon_selection'],
 			'SAVE_ALL_BUTTON'			=>	$this->config['save_all_button'],
 			'COOKIE_RUNTIME'			=>	$this->config['cookie_runtime'],
 			'SHOW_DECLINE_BUTTON'		=>	$this->config['show_decline_button'],
@@ -134,7 +134,6 @@ class admin_controller
 	{
 		$ext_display_name 			= $this->md_manager->get_metadata('display-name');
 		$this->language->add_lang('acp_cookie_switches', 'chris1278/cookie');
-		$this->page_title = $this->language->lang('ACP_COOKIE_SWITCHES');
 		add_form_key('cookie_switches');
 		$errors = [];
 
@@ -152,6 +151,19 @@ class admin_controller
 				$this->config->set('google_translator_switch', $this->request->variable('google_translator_switch', 0));
 				$this->config->set('google_analytics_no_tm_switch', $this->request->variable('google_analytics_no_tm_switch', 0));
 				$this->config->set('google_analytics_id', $this->request->variable('google_analytics_id', ''));
+				$this->config->set('vimeo_bbcode_switch', $this->request->variable('vimeo_bbcode_switch', 0));
+				$this->config->set('spotify_bbcode_switch', $this->request->variable('spotify_bbcode_switch', 0));
+				$this->config->set('matomo_switch', $this->request->variable('matomo_switch', 0));
+				$this->config->set('matomo_url', $this->request->variable('matomo_url', ''));
+				$this->config->set('matomo_side_id', $this->request->variable('matomo_side_id', '1'));
+				$this->config->set('matomo_in_out', $this->request->variable('matomo_in_out', 0));
+				$this->config->set('google_webfont_switch', $this->request->variable('google_webfont_switch', 0));
+
+				$this->config->set('google_adsense_switch', $this->request->variable('google_adsense_switch', 0));
+				$this->config->set('google_adsense_id', $this->request->variable('google_adsense_id', ''));
+
+
+
 				$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_ACP_COOKIE_SWITCHES');
 				trigger_error($this->language->lang('ACP_COOKIE_SETTING_SAVED') . adm_back_link($this->u_action));
 			}
@@ -159,14 +171,34 @@ class admin_controller
 
 		$s_errors = !empty($errors);
 
+		if (empty($this->config['matomo_side_id']))
+		{
+			$matomoacpsideid					=	'1';
+		}
+		else
+		{
+			$matomoacpsideid					=	$this->config['matomo_side_id'];
+		}
+
 		$this->template->assign_vars([
 			'S_ERROR'									=>	$s_errors,
 			'ERROR_MSG'									=>	$s_errors ? implode('<br />', $errors) : '',
-			'CM_EXT_NAME'								=>	$ext_display_name	,
+			'CM_EXT_NAME'								=>	$ext_display_name,
+			'MATOMO_SWITCH'								=>	$this->config['matomo_switch'],
+			'MATOMO_URL'								=>	$this->config['matomo_url'],
+			'MATOMO_SIDE_ID'							=>	$matomoacpsideid,
+			'MATOMO_IN_OUT'								=>	$this->config['matomo_in_out'],
+			'GOOGLE_WEBFONT_SWITCH'						=>	$this->config['google_webfont_switch'],
 			'YOUTUBE_BBCODE_SWITCH'						=>	$this->config['youtube_bbcode_switch'],
 			'GOOGLE_TRANSLATOR_SWITCH'					=>	$this->config['google_translator_switch'],
 			'GOOGLE_ANALYTICS_NO_TM_SWITCH'				=>	$this->config['google_analytics_no_tm_switch'],
 			'GOOGLE_ANALYTICS_ID'						=>	$this->config['google_analytics_id'],
+			'VIMEO_BBCODE_SWITCH'						=>	$this->config['vimeo_bbcode_switch'],
+			'SPOTIFY_BBCODE_SWITCH'						=>	$this->config['spotify_bbcode_switch'],
+
+			'GOOGLE_ADSENSE_SWITCH'						=>	$this->config['google_adsense_switch'],
+			'GOOGLE_ADSENSE_ID'							=>	$this->config['google_adsense_id'],
+
 			'U_ACTION'									=>	$this->u_action,
 
 		]);

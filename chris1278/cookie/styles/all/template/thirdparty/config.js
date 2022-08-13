@@ -92,8 +92,8 @@ var klaroConfig =
             },
             consentModal:
 			{
-                title: settings_for_cookie,
-                description: second_infos,
+                title: cookie_icon_selection + settings_for_cookie + new_line,
+                description: new_line + second_infos,
             },
             purposes:
 			{
@@ -102,15 +102,25 @@ var klaroConfig =
                     description: cookies_must_have,
                     title: technical_cookies
                 },
-                extern:
+                media:
 				{
                     description: extern_cookies_explain,
                     title: extern_cookies
                 },
-                tools:
+				extern:
 				{
                     description: tools_cookies,
                     title: tools
+                },
+				another_ext:
+				{
+                    description: another_ext_explain,
+                    title: another_ext
+                },
+				extra_service:
+				{
+                    description: extra_services_explain,
+                    title: extra_services
                 },
             },
         },
@@ -131,6 +141,12 @@ var klaroConfig =
 var switch_1 = false;
 var switch_2 = false;
 var switch_3 = false;
+var switch_4 = false;
+var switch_5 = false;
+var switch_6 = false;
+var switch_7 = false;
+var switch_8 = false;
+
 // YouTube
 if (youtube_bbcode_switch == true)
 {
@@ -141,7 +157,8 @@ if (youtube_bbcode_switch == true)
             name: 'youtube',
             default: false,
             title: cs_youtube,
-            purposes: ['extern'],
+            purposes: ['media'],
+			description: ds_youtube,
         },
     };
 }
@@ -160,7 +177,8 @@ if (google_translator_switch == true)
             name: 'googletranslate',
             default: false,
             title: cs_google_translator,
-            purposes: ['tools'],
+            purposes: ['another_ext'],
+			description: ds_google_translator,
             callback: function(consent, app)
 			{
                 if (typeof hideAllgoogleTranslateElementInit === "function")
@@ -195,7 +213,8 @@ if (google_analytics_no_tm_switch == true)
             name: 'g-analytics',
             default: false,
             title: cs_google_analytics,
-            purposes: ['tools'],
+            purposes: ['extern'],
+			description: ds_google_analytics_no_tm,
             callback: function(consent, service)
 			{
                 // callback function the google_analytics cookies.
@@ -235,6 +254,132 @@ else
     part3 = null
 };
 
+if (vimeo_bbcode_switch == true)
+{
+    var part4 =
+	{
+        services:
+		{
+            name: 'vimeo',
+            default: false,
+            title: cs_vimeo,
+            purposes: ['media'],
+			description: ds_vimeo,
+        },
+    };
+}
+else
+{
+    part4 = null
+};
+
+if (matomo_switch == true)
+{
+    var part5 =
+	{
+        services:
+		{
+            name: 'matomo',
+            default: false,
+            title: cs_matomo,
+            purposes: ['extern'],
+			description: ds_matomo,
+            callback: function(consent, service)
+			{
+                // callback function the google_analytics cookies.
+                if (consent == false)
+				{
+                    var cookieListAll = (document.cookie) ? document.cookie.split(';') : []; //Alle cookies auslesen - Read all Cookies
+                    var cookieList = cookieListAll.filter(function(praefix) //Cookies filtern - Filter cookies
+                        {
+                            return praefix.substring(0, f).match('_pk'); //Filterwert festlegen - Define the filter value
+                        });
+                    var cookieValues = {}; //Eigenschaftenvariable für cookie-Werte anlegen - Create property variable for cookie values
+                    for (var i = 0, n = cookieList.length; i != n; ++i) //Schleife über Anzahl der gefilterten cookies - Loop over number of filtered cookies
+                    {
+                        var cookie = cookieList[i]; //cookie in Array schreiben - write cookie in a array
+                        var f = cookie.indexOf('='); //Position =
+                        if (f >= 0) //wenn Position = größer 0 - If position = bigger then 0
+                        {
+                            var cookieName = cookie.substring(0, f); //Wert vor dem = in cookieName schreiben - Write the value in front of the = in cookieName
+                            var cookieValue = cookie.substring(f + 1); //Wert hinter dem = in cookieValue schreiben - Write the value after the = in cookieValue
+                            if (!cookieValues.hasOwnProperty(cookieName))
+							{ //Wenn keine Eigenschaft für cookieName gespeichert - If no property is saved for cookieName
+                                cookieValues[cookieName] = cookieValue; //cookieValue als Eigenschaft speichern - Save cookieValue as a property
+                            }
+                        }
+                        document.cookie = cookieName + '=' + cookieValue + '; path=/; MaxAge=0; Domain=.' + window.location.hostname; //Max-Age der ermittelten cookies auf 0 setzen - Set the max age of the cookies detected to 0
+                    }
+                }
+            },
+            required: false,
+            optOut: false,
+            onlyOnce: true,
+        }
+    }
+}
+else
+{
+	part5 = null
+};
+
+if (spotify_bbcode_switch == true)
+{
+    var part6 =
+	{
+        services:
+		{
+            name: 'spotify',
+            default: false,
+            title: cs_spotify,
+            purposes: ['media'],
+			description: ds_spotify,
+        },
+    };
+}
+else
+{
+    part6 = null
+};
+
+if (google_webfont_switch == true)
+{
+    var part7 =
+	{
+        services:
+		{
+            name: 'googlewebfont',
+            default: false,
+            title: cs_google_webfont_switch,
+            purposes: ['extra_service'],
+			description: ds_google_webfont_switch,
+        },
+    };
+}
+else
+{
+    part7 = null
+};
+
+if (google_adsense_switch == true)
+{
+    var part8 =
+	{
+        services:
+		{
+            name: 'google_adsense',
+            default: false,
+            title: cs_google_adsense_switch,
+            purposes: ['extra_service'],
+			description: ds_google_adsense_switch,
+        },
+    };
+}
+else
+{
+    part8 = null
+};
+
 if (part1 != null)
 {
     klaroConfig.services.push(part1.services);
@@ -246,4 +391,24 @@ if (part2 != null)
 if (part3 != null)
 {
     klaroConfig.services.push(part3.services);
+};
+if (part4 != null)
+{
+    klaroConfig.services.push(part4.services);
+};
+if (part5 != null)
+{
+    klaroConfig.services.push(part5.services);
+};
+if (part6 != null)
+{
+    klaroConfig.services.push(part6.services);
+};
+if (part7 != null)
+{
+    klaroConfig.services.push(part7.services);
+};
+if (part8 != null)
+{
+    klaroConfig.services.push(part8.services);
 };

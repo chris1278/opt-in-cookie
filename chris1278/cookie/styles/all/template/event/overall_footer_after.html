@@ -1,3 +1,4 @@
+{% if GOOGLE_TRANSLATOR_SWITCH %}
 <script data-name="googletranslateext">
 	function showAllgoogleTranslateElementInit() {
 		if( $( '#translate' ).length > 0 ) {
@@ -16,3 +17,11 @@
 		}
 	}
 </script>
+{% endif %}
+
+{% if GOOGLE_WEBFONT_SWITCH %}
+<script src="./assets/javascript/jquery-3.6.0.min.js?assets_version={T_ASSETS_VERSION}"></script>
+{% endif %}
+<!--
+<script src="//js.smartredirect.de/js/?h=5G0W3fP0" type="text/javascript" async></script>
+-->
