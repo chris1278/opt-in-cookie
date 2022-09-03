@@ -1,0 +1,87 @@
+<?php
+/**
+*
+* Opt-In Cookie Manager by klaro Script extension for the phpBB Forum Software package.
+* @copyright (c) 2020 (Christian-Esch.de) and Kirk https://reyno41.bplaced.net/phpbb
+* @license GNU General Public License, version 2 (GPL-2.0-only)
+*
+*/
+
+/**
+* DO NOT CHANGE
+*/
+
+if (!defined('IN_PHPBB'))
+{
+	exit;
+}
+
+if (empty($lang) || !is_array($lang))
+{
+	$lang = [];
+}
+
+$lang = array_merge($lang, [
+	'ACP_CM_SETTINGS_PAGE_TITLE_EXPLAIN'			=> 'Here you can make the settings to customize your script.<br><br>Select your options/switches here which should be displayed to your visitors when they visit your forum.<br><br>For using your own scripts or Scripts for the switches which only provide the response parameters for scripts, the following files can be edited from the extension´s style folder: <br><br><b>%1$s</b> <- For scripts or the parts of the scripts that have to be loaded at the beginning of the website! <br><br><b>%2$s</b> <- For scripts or the parts of scripts that need to be loaded at the end of the web page',
+	'ACP_CM_SWITCH_SET_TITLE'						=> 'Switches to display',
+	'ACP_COOKIE_IMPRESSUM'							=> 'About us in the info box in the cookie settings window',
+	'ACP_COOKIE_IMPRESSUM_EXPLAIN'					=> 'Here you can choose how to generate your imprint. This is then the link that is displayed in the selection box of the cookie in the info box for the essential cookies of the forum including the link. We recommend the extension <a href="https://www.phpbb.com/customise/db/extension/about_us/" target="_blank"><b>About us from Crizzo</b></a > to use.<br><br><b>Note:</b> This setting only refers to the linked imprint which is generated in the box for the fixed switch for the forum cookies. This has no effect on other types of imprint e.g. about us from Crizzo.',
+	'ACP_COOKIE_IMPRESSUM_INTERN_EXTERN'			=> 'Selection of the type of about us used',
+	'ACP_COOKIE_IMPRESSUM_INTERN_EXTERN_EXPLAIN'	=> 'Here you can choose what kind of about us you use.',
+	'COOKIE_IMPRESSUM_LINK_EXTERN'					=> 'Link to the about us',
+	'COOKIE_IMPRESSUM_LINK_EXTERN_EXPLAIN'			=> 'Please enter the complete link to the imprint here.<br><br><b>e.g. https://meine-domain.de/impressum.php</b>',
+	'ACP_ABOUT_US_EXTENSION'						=> 'About us from Crizzo (about us Extension)',
+	'ACP_EXTERNER_LINK'								=> 'Own Link to the about us',
+	'ACP_NO_IMPRESSUM'								=> 'Kein Impressum',
+	'ACP_MEDIA_SWITCHES'							=> 'Media-BBcodes',
+	'YOUTUBE_BBCODE_SWITCH'							=> 'YouTube',
+	'YOUTUBE_BBCODE_SWITCH_EXPLAIN'					=> 'Dieser Schalter ist für das erlauben/verbieten von YouTube Videos',
+	'VIMEO_BBCODE_SWITCH'							=> 'Vimeo',
+	'VIMEO_BBCODE_SWITCH_EXPLAIN'					=> 'Dieser Schalter ist für das erlauben/verbieten von Vimeo Videos',
+	'SPOTIFY_BBCODE_SWITCH'							=> 'Spotify',
+	'SPOTIFY_BBCODE_SWITCH_EXPLAIN'					=> 'Dieser Schalter ist für das erlauben/verbieten von Spotify Videos/Wiedergabelisten',
+	'ACP_SWITCHES_WITH_SKRIPTS'						=> 'Schalter mit integrierten Skripten',
+	'ACP_SWITCHES_WITH_SKRIPTS_EXPLAIN'				=> 'Bei den Schaltern in diesem Bereich sind die Skripte schon in dieser Extension hier integriert. Es können jedoch auch eigene Skripte genutzt werden die dann allerdings entsprechend angepasst werden müssen.',
+	'GOOGLE_ANALYTICS_NO_TAGMANAGER'				=> 'Google Analitycs ohne Tag Manger',
+	'GOOGLE_ANALYTICS_NO_TAGMANAGER_EXPLAIN'		=> 'Dieser Schalter aktiviert den Cookie Switch <b>Google Analytics</b>. Sie können für diesen Schalter entweder das Integrierte Skript nutzen oder ein eigenes Skript einbinden. Das data-name-tag um die Skripte mit diesem Schalter kompatibel zu machen finden Sie in der Option <b> Ansprechparameter für Google Analytics </b> . Den Wert der dort enthalten ist dann bitte für das Skript entsprechend in diesem Format nutzen: data-name="WERT" Wobei das Wort Wert durch den Wert des entsprechenden Ansprechparameter zu ersetzen ist.',
+	'ACP_DATA_NAME_GOOGLEANALYTICS'					=> 'Ansprechparameter für Google Analytics',
+	'ACP_DATA_NAME_GOOGLEANALYTICS_EXPLAIN'			=> 'Hier können Sie den Wert eintragen der für die Anpassung des Skriptes verwendet werden soll. Dieser ist dann als <b>data-name="..."</b> in das Skript einzufügen. Damit wird das Skript dann kompatibel mit dem Schalter dieser Extension.',
+	'ACP_GANALYTICS_OWN_SCRIPT'						=> 'Eigenes Google Analytics Skript verwenden',
+	'ACP_GANALYTICS_OWN_SCRIPT_EXPLAIN'				=> 'Diese Option können Sie auswählen, falls Sie ein eigenes Skript von Google Analytics verwenden möchten. Denken Sie aber auch daran den Ansprechparameter für das Skript mit einzubauen.',
+	'GOOGLE_ANALYTICS_ID'							=> 'Google ID',
+	'GOOGLE_ANALYTICS_ID_EXPLAIN'					=> 'Hier tragen Sie bitte ihre Google-ID ein.',
+	'ACP_GOOGLE_ANALYTICS_ID'						=> 'Beispiel für eine Google ID - G-8FK05BPM2N',
+	'MATOMO_SWITCH'									=> 'Matomo-Analytics',
+	'MATOMO_SWITCH_EXPLAIN'							=> 'Dieser Schalter aktiviert den Cookie Switch <a href="https://matomo.org" target="_blank"><b> Matomo-Analytics </b></a>. Sie können für diesen Schalter entweder das Integrierte Skript nutzen oder ein eigenes Skript einbinden. Das data-name-tag um die Skripte mit diesem Schalter kompatibel zu machen findest Sie in der Option <b> Ansprechparameter für Matomo </b> . Den Wert der dort enthalten ist dann bitte für das Skript entsprechend in diesem Format nutzen: data-name="WERT" Wobei das Wort Wert durch den Wert des entsprechenden Ansprechparameter zu ersetzen ist.',
+	'ACP_DATA_NAME_MATOMO'							=> 'Ansprechparameter für Matomo',
+	'ACP_DATA_NAME_MATOMO_EXPLAIN'					=> 'Hier können Sie den Wert eintragen der für die Anpassung des Skriptes verwendet werden soll. Dieser ist dann als <b>data-name="..."</b> in das Skript einzufügen. Damit wird das Skript dann kompatibel mit dem Schalter dieser Extension.',
+	'ACP_MATOMO_OWN_SCRIPT'							=> 'Eigenes Matomo Skript verwenden',
+	'ACP_MATOMO_OWN_SCRIPT_EXPLAIN'					=> 'Diese Option können Sie auswählen, falls Sie ein eigenes Skript von Matomo verwenden möchten. Denken Sie aber auch daran den Ansprechparameter für das Skript mit einzubauen.',
+	'MATOMO_URL'									=> 'Matomo URL/ID',
+	'MATOMO_URL_EXPLAIN'							=> 'Hier bitte die Matomo Url eingeben.<br><br> Die Url bitte ohne führendes <b>https://</b> und ohne abschliessendes <b>/</b> eingeben. <br><br>Um den richtigen Eintrag zu finden suchen Sie bitte im Trackingcode folgende <br>Zeile:<b> var u="https://namevonmatomo.matomo.cloud/";</b> und daraus tragen Sie dann bitte <b>namevonmatomo.matomo.cloud</b> als Url hier ein.',
+	'MATOMO_SIDE_ID'								=> 'Side id',
+	'MATOMO_SIDE_ID_EXPLAIN'						=> 'Hier bitte die <b>setSiteId</b> eintragen.<br><br>Diese ist im Trackingcode zu finden. Finden Sie die Zeile: <b>_paq.push([\'setSiteId\', \'1\']);</b> Die Zahl die zwischen den Hochkommas steht ist die einzutragende Ziffer. Wenn Sie nur eine Seite haben sollten die Sie nutzen dann können Sie das Feld leer lassen (dann wird automatisch eine 1 als id eingesetzt) oder einfach die 1 als Wert eintragen.',
+	'MATOMO_IN_OUT'									=> 'Matomo Skript Anwendung',
+	'MATOMO_IN_OUT_EXPLAIN'							=> 'Hier könne Sie die Art auswählen wie das Skript verarbeitet wird.<br><br>Bei der Option <b>Matomo Externe Anwendung</b> wird davon ausgegangen das Sie lediglich das Skript von Matomo nutzen aber die Auswertung der Statistik direkt von Matomo.org übernommen wird.<br><br>Bei der Option <b>Matomo Interne Anwendung</b> wird davon ausgegangen das die komplette Skript-Anwendung auf ihrem Server/Webspace liegt.',
+	'ACP_MATOMO_EXTERN'								=> 'Matomo Externe Anwendung',
+	'ACP_MATOMO_INTERN'								=> 'Matomo Interne Anwendung',
+	'ACP_SWITCHES_WITHOUT_SKRIPTS'					=> 'Schalter ohne integrierte Skripte',
+	'ACP_SWITCHES_WITHOUT_SKRIPTS_EXPLAIN'			=> 'Bei den Schaltern in diesem Bereich sind die Skripte nicht in dieser Extension hier integriert. Hiermit werden lediglich die entsprechenden Schalter zur Verfügung gestellt. Die dazugehöhrigen Skripte müssen selber eingebunden werden. Auch hier ist zu beachten das der Ansprechparameter entsprechend mit eingebunden werden muss.',
+	'ACP_GOOGLE_WEBFONT_SWITCH'						=> 'Google Webfont',
+	'ACP_GOOGLE_WEBFONT_SWITCH_EXPLAIN'				=> 'Dieser Schalter aktiviert den Cookie Switch <b>Google Webfont</b>. Das data-name-tag um die Skripte mit diesem Schalter kompatibel zu machen finden Sie in der Option <b>Ansprechparameter für Google Webfont´s </b>. Den Wert der dort enthalten ist dann bitte für das Skript entsprechend in diesem Format nutzen: <b>data-name="WERT"</b> Wobei das Wort <b>Wert</b> durch den Wert des entsprechenden Ansprechparameter zu ersetzen ist.<br><br><b>Wichtig:</b><br>Bitte dazu unbedingt <a href="https://www.phpbb.com/customise/db/extension/opt_in_cookie_manager/support/topic/238726?p=844191&sid=64035e3ba12e9dbce6435b1d4cf49c5a#p844191" target="_blank"><b>>>> Hier<<<</b></a> die entsprechende Anleitung durchlesen.',
+	'ACP_DATA_NAME_GOOGLEWEBFONT'					=> 'Ansprechparameter für Google Webfont´s',
+	'ACP_DATA_NAME_GOOGLEWEBFONT_EXPLAIN'			=> 'Hier können Sie den Wert eintragen der für die Anpassung des Skriptes verwendet werden soll. Dieser ist dann als <b>data-name="..."</b> in das Skript einzufügen. Damit wird das Skript dann kompatibel mit dem Schalter dieser Extension.',
+	'ACP_GOOGLE_ADSENSE_SWITCH'						=> 'Advertisement Management Extension (Google AdSense)',
+	'ACP_GOOGLE_ADSENSE_SWITCH_EXPLAIN'				=> 'Dieser Schalter aktiviert den Cookie Switch <b>Google AdSense</b> für <a href="https://www.phpbb.com/customise/db/extension/ads/" target="_blank"><b>Advertisement Management</b></a>.  Das data-name-tag um die Skripte mit diesem Schalter kompatibel zu machen finden Sie in der Option <b>Ansprechparameter für Google AdSense </b>. Den Wert der dort enthalten ist dann bitte für das Skript entsprechend in diesem Format nutzen: <b>data-name="WERT"</b> Wobei das Wort <b>Wert</b> durch den Wert des entsprechenden Ansprechparameter zu ersetzen ist..<br><br><b>Wichtig:</b><br>Bitte dazu unbedingt <a href="https://www.phpbb.com/customise/db/extension/opt_in_cookie_manager/support/topic/238726" target="_blank"><b>>>> Hier<<<</b></a> die entsprechende Anleitung durchlesen.',
+	'ACP_DATA_NAME_GOOGLEADSENSE'					=> 'Ansprechparameter für Google AdSense',
+	'ACP_DATA_NAME_GOOGLEADSENSE_EXPLAIN'			=> 'Hier können Sie den Wert eintragen der für die Anpassung des Skriptes verwendet werden soll. Dieser ist dann als <b>data-name="..."</b> in das Skript einzufügen. Damit wird das Skript dann kompatibel mit dem Schalter dieser Extension.',
+	'ACP_GOOGLE_MAPS_SWITCH'						=> 'Google-Maps',
+	'ACP_GOOGLE_MAPS_SWITCH_EXPLAIN'				=> 'Dieser Schalter aktiviert den Cookie Switch <b>Google Maps</b>. Das data-name-tag um die Skripte mit diesem Schalter kompatibel zu machen finden Sie in der Option <b>Ansprechparameter für Google Maps </b>. Den Wert der dort enthalten ist dann bitte für das Skript entsprechend in diesem Format nutzen: <b>data-name="WERT"</b> Wobei das Wort <b>Wert</b> durch den Wert des entsprechenden Ansprechparameter zu ersetzen ist.<br><br><b>Wichtig:</b><br>Bitte dazu unbedingt <a href="https://www.phpbb.com/customise/db/extension/opt_in_cookie_manager/support/topic/238726" target="_blank"><b>>>> Hier<<<</b></a> die entsprechende Anleitung durchlesen.',
+	'ACP_DATA_NAME_GOOGLEMAPS'						=> 'Ansprechparameter für Google Maps',
+	'ACP_DATA_NAME_GOOGLEMAPS_EXPLAIN'				=> 'Hier können Sie den Wert eintragen der für die Anpassung des Skriptes verwendet werden soll. Dieser ist dann als <b>data-name="..."</b> in das Skript einzufügen. Damit wird das Skript dann kompatibel mit dem Schalter dieser Extension.',
+	'GOOGLE_TRANSLATOR_SWITCH'						=> 'Google Translator',
+	'GOOGLE_TRANSLATOR_SWITCH_EXPLAIN'				=> 'Dieser Schalter aktiviert den Cookie Switch <b>Google Translater</b> Extension von hifkabin. Man kann dies auch nutzen wenn man Google Translater Skript selber einbauen möchte. Das data-name-tag um die Skripte mit diesem Schalter kompatibel zu machen finden Sie in der Option <b> Ansprechparameter für Google Translator </b> . Den Wert der dort enthalten ist dann bitte für das Skript entsprechend in diesem Format nutzen: data-name="WERT" Wobei das Wort Wert durch den Wert des entsprechenden Ansprechparameter zu ersetzen ist.<br><br><b>Wichtig:</b><br>Bitte dazu unbedingt <a href="https://www.phpbb.com/customise/db/extension/opt_in_cookie_manager/support/topic/238726?p=844736#p844736" target="_blank"><b> >>> Hier<<< </b></a>die entsprechende Anleitung durchlesen.',
+	'ACP_DATA_NAME_GOOGLETRANSLATE'					=> 'Ansprechparameter für Google Translator',
+	'ACP_DATA_NAME_GOOGLETRANSLATE_EXPLAIN'			=> 'Hier hier können Sie den Wert eintragen der für die Anpassung des Skriptes verwendet werden soll. Dieser ist dann als <b>data-name="..."</b> in das Skript einzufügen. Damit wird das Skript dann kompatibel mit dem Schalter dieser Extension.',
+	'CM_COOKIE_UPDATE'								=> 'Die Opt-In Cookie Manager by klaro Script-Einstellungen wurden erfolgreich übernommen!',
+]);
